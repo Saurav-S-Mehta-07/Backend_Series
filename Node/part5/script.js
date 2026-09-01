@@ -1,3 +1,4 @@
+// learning local v/s global -> npm package installation
 const figlet = require('figlet');
 
 let text = process.argv[2];
