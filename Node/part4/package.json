@@ -1,0 +1,11 @@
+{
+  "name": "part4",
+  "version": "1.0.0",
+  "description": "creating own package.json file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saurav Singh Mehta",
+  "license": "ISC"
+}
