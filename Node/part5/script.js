@@ -22,3 +22,6 @@ Not writing this command will give us error
 
 // npm install -g figlet 
 // now figlet installed globally
+
+// first link your package to use globally
+// npm link figlet
