@@ -1,0 +1,18 @@
+Library
+A Library is a collection of pre-written code that can be used to perform speciric tasks
+eg: axios
+
+Frameword
+a Frameword is a set of pre-written code that provides a structure for developing software
+applications.
+eg : express
+
+express
+A Node.js web application framework that helps us to make web applications
+It is used for server side programming.
+
+Four major uses of express:
+1. Listen for incomming request
+2. Parse request
+3. match response with routes
+4. response
