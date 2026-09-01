@@ -11,3 +11,14 @@ figlet(text, function (err, data) {
   }
   console.log(data);
 });
+
+// global
+// sudo chown -R $USER /usr/local/lib/node_modules
+/* 
+this command is written because we need admin
+access before installing globally.
+Not writing this command will give us error
+ */
+
+// npm install -g figlet 
+// now figlet installed globally
