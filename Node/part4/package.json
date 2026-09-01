@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Saurav Singh Mehta",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "figlet": "^1.11.4"
+  }
 }
