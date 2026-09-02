@@ -10,5 +10,13 @@
     <h2>@<%=username%></h2>
     <button>Follow</button>
     <button>Following</button>
+
+    <br>
+    <h3>Followers</h3>
+
+    <%for(let name of followers){%>
+         <li><%=name%></li>    
+    <%}%>
+
 </body>
 </html>
