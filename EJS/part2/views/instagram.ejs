@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            height: 100px;
+            width: 100px;
+        }
+
+        span{
+            display: flex;
+        }
+
+        span h2{
+            margin-right: 10px;
+        }
+
+        .posts{
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .post{
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Instagram</h1>
+    <h2>@<%=data.name%></h2>
+    <span>
+        <h2>Follower : <%=data.followers%></h2>
+        <h2>Following : <%=data.following%></h2>
+    </span>
+    <hr>
+    <div class="posts">
+        <%for(let post of data.posts){%>
+            <div class="post">
+               <img src="<%=post.image%>" alt="cat">
+               <h3>likes: <%=post.likes%></h3>
+               <h3>comments: <%=post.comments%></h3>
+             </div>
+        <%}%>
+    </div>
+
+</body>
+</html>
