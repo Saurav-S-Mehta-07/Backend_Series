@@ -6,7 +6,18 @@ const app = express();
 
 
 app.use((req, res)=>{
-  console.log("request received");
+  // console.log(req);
+  // console.log("request received");
+
+  // res.send("This is a basic response"); // string
+
+  // res.send({
+  //   name:"saurav",
+  //   marks:100,
+  //   age:20
+  // }); // object -> json
+
+  res.send("<h1> This is Heading 1 </h1>"); // html
 })
 
 
