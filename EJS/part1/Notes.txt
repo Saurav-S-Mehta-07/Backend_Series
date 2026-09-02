@@ -31,3 +31,4 @@ Interpolation refers to embedding expressions into marked up text.
 tags
 
 <%= %> -> for expression -> lastly its string
+<% %> -> no output for control eg: <% if() {%> <%}%>
