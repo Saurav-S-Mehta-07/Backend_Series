@@ -36,6 +36,13 @@ app.get("/:username/:id",(req,res)=>{
 })
 
 
+//query string  /search/?q=saurav
+app.get("/search", (req,res)=>{
+  let {q} = req.query;
+  res.send(`search result for query ${q}`);
+})
+
+
 // app.use listens for all requests (/*)
 app.use((req, res)=>{
   // console.log(req);
