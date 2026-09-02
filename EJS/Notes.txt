@@ -1,3 +1,10 @@
 Templating
 EJS(Embedded JavaScript tamplates)
 EJS is a simple templating language that lets you generated HTML, markup with plain JavaScript.
+
+
+-> when we require express, ejs automatically required internally by express
+
+-> app.set("view engine", "ejs")
+*view engine mtlb jo hamara template dikhane wala hai wo "ejs" hai
+*view engine search ejs template in "views" folder so keep .ejs file inside views folder
