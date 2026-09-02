@@ -11,10 +11,17 @@ app.get("/", (req, res)=>{
     res.send("HOME PAGE");
 })
 
+// app.get("/ig/:username",(req,res)=>{
+//     const followers = ["adam", "bob", "charlie","dustibun", "eve"];
+//     let {username} = req.params;
+//     res.render("insta", {username, followers});
+// })
+
 app.get("/ig/:username",(req,res)=>{
-    const followers = ["adam", "bob", "charlie","dustibun", "eve"];
     let {username} = req.params;
-    res.render("insta", {username, followers});
+    const instgramData = require("./data.json");
+    const data = instgramData[username];
+    res.render("instagram", {data});
 })
 
 app.listen(PORT, ()=>{
