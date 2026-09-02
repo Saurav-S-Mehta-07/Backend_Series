@@ -1,0 +1,33 @@
+Templating
+EJS(Embedded JavaScript tamplates)
+EJS is a simple templating language that lets you generated HTML, markup with plain JavaScript.
+
+
+-> when we require express, ejs automatically required internally by express
+
+-> app.set("view engine", "ejs")
+*view engine mtlb jo hamara template dikhane wala hai wo "ejs" hai
+*view engine search ejs template in "views" folder so keep .ejs file inside views folder
+
+-> res.render("home.ejs") or res.render("home")
+* express bydefault search home.ejs inside views folder
+
+-> if I'll will run index.js from Parent Directory then the express search views folder inside Parent
+   Directory.
+
+const path = require("path");
+app.set("views", path.join(__dirname, "/views"));
+
+-> using these two above line now we are able to run index.js from anywhere and now the 
+   express will search views folder inside correct path.
+      
+
+# Interpolation Syntax
+Interpolation refers to embedding expressions into marked up text.
+
+
+
+## EJS
+tags
+
+<%= %> -> for expression -> lastly its string
