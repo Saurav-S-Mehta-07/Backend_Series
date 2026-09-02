@@ -13,20 +13,26 @@ traffic in a network or between or across mulitple
 network
 */
 
-app.get("/",(req,res)=>{
-  res.send("GET req to Home Page")
-})
+// app.get("/",(req,res)=>{
+//   res.send("GET req to Home Page")
+// })
 
-app.post("/",(req,res)=>{
-  res.send("Post req to Home Page")
-})
+// app.post("/",(req,res)=>{
+//   res.send("Post req to Home Page")
+// })
 
-app.get("/apple",(req,res)=>{
-  res.send("you contacted apple path");
-})
+// app.get("/apple",(req,res)=>{
+//   res.send("you contacted apple path");
+// })
 
-app.get("/orange",(req,res)=>{
-  res.send("you send orange path");
+// app.get("/orange",(req,res)=>{
+//   res.send("you send orange path");
+// })
+
+// path parameters
+app.get("/:username/:id",(req,res)=>{
+  let {username, id} = req.params;
+  res.send(`welcome ${username}`);
 })
 
 
