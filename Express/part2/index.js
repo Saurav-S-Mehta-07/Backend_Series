@@ -39,6 +39,9 @@ app.get("/:username/:id",(req,res)=>{
 //query string  /search/?q=saurav
 app.get("/search", (req,res)=>{
   let {q} = req.query;
+  if(!q){
+   return res.send("nothing searched");
+  }
   res.send(`search result for query ${q}`);
 })
 
