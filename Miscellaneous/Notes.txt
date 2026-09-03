@@ -28,3 +28,14 @@ their own copy
 eg : arr.__proto__(reference)
      Array.prototype(actual object)
      String.prototype
+
+
+# Factory functions
+a funciton that creates objects
+limitation : the funciton variable still be copying
+
+so use "new" + "this" operator 
+
+-> constructors - doesn't return anything and starts with Capital letter
+
+
