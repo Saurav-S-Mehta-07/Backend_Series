@@ -1,17 +1,7 @@
-const std1 = {
-    name : "adam",
-    age : 23,
-    marks : 94,
-    getMarks : function(){
-        return this.marks;
-    }
-};
+let arr = [1,2,3];
+let arr2 = [4,5,6];
 
-const std2 = {
-    name : "bob",
-    age : 25,
-    marks : 92,
-    getMarks : function(){
-        return this.marks;
-    }
-};
+// arr.sayHello = ()=>(console.log("Hello!, I'm ARR"));
+// arr2.sayHello = ()=>(console.log("Hello!, I'm ARR"));
+
+Array.prototype.sayHello = ()=>(console.log("Hello!"));
