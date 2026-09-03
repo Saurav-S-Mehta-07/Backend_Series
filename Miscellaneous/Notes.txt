@@ -43,3 +43,9 @@ so use "new" + "this" operator
  classes are a template for creating objects
  the constructor method is a special method of a class for creating and initializing
  an object instance of that class
+
+
+## Inheritance
+   Inheritance is a mechanism that allows us to create new classes on the
+   basis of already existing classes.
+   

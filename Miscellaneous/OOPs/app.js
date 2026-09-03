@@ -44,16 +44,49 @@
 
 // classes
 
+// class Person{
+//     constructor(name, age){
+//         this.name = name;
+//         this.age = age;
+//     }
+//     talk(){
+//         console.log(`Hi!, my name is ${this.name}`);
+//     }
+// }
+
+// let p1 = new Person("saurav", 21);
+// let p2 = new Person("gaurav", 20);
+// console.log(p1.talk == p2.talk);//true
+
+
+
+// Inheritance
+
 class Person{
-    constructor(name, age){
+     constructor(name, age){
         this.name = name;
         this.age = age;
-    }
-    talk(){
-        console.log(`Hi!, my name is ${this.name}`);
-    }
+     }
+     talk(){
+        console.log("HI I'm ", this.name);
+     }
 }
 
-let p1 = new Person("saurav", 21);
-let p2 = new Person("gaurav", 20);
-// console.log(p1.talk == p2.talk);//true
+class Student extends Person{
+      constructor(name, age, marks){
+        super(name,age);
+        this.marks = marks;
+      }
+}
+
+let s1 = new Student("adam", 20, 99);
+
+
+class Teacher extends Person{
+      constructor(name, age, subject){
+        super(name, age);
+        this.subject = subject;
+      }
+}
+
+let t1 = new Teacher("bob", 20, "science");
