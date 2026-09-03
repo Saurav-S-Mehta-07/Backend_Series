@@ -11,12 +11,27 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
+let posts =[
+    {
+        username : "saurav",
+        content : "I love coding"
+    },
+    {
+        username : "mayank",
+        content : "smartwork is important to achieve success"
+    },
+    {
+        username : "shivam",
+        content : "Internship is going well!"
+    }
+];
+
 app.get("/",(req,res)=>{
     res.redirect("/posts");
 })
 
 app.get("/posts",(req,res)=>{
-    res.send("get request in posts");
+    res.render("index",{posts});
 })
 
 app.listen(PORT, ()=>{

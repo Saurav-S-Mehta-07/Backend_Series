@@ -1,0 +1,13 @@
+div{
+    width: 40%;
+    border: 1px solid black;
+    margin: 10px;
+    background-color: pink;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+h3{
+    color: maroon;
+    font-style: italic;
+}
