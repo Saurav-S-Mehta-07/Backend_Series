@@ -39,3 +39,7 @@ so use "new" + "this" operator
 -> constructors - doesn't return anything and starts with Capital letter
 
 
+## classes
+ classes are a template for creating objects
+ the constructor method is a special method of a class for creating and initializing
+ an object instance of that class

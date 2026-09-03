@@ -27,16 +27,33 @@
 // console.log(p1.talk == p2.talk) // false
 
 // Constructors
-function Person(name, age){
-    this.name = name;
-    this.age = age;
-}
+// function Person(name, age){
+//     this.name = name;
+//     this.age = age;
+// }
 
-Person.prototype.talk = function(){
-    console.log(`Hi! My name is ${this.name}`);
-}
+// Person.prototype.talk = function(){
+//     console.log(`Hi! My name is ${this.name}`);
+// }
 
-let p1 = new Person("saurav", 20);
-let p2 = new Person("shivam", 21);
+// let p1 = new Person("saurav", 20);
+// let p2 = new Person("shivam", 21);
 // console.log(p1.talk == p2.talk) // true
 
+
+
+// classes
+
+class Person{
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+    }
+    talk(){
+        console.log(`Hi!, my name is ${this.name}`);
+    }
+}
+
+let p1 = new Person("saurav", 21);
+let p2 = new Person("gaurav", 20);
+// console.log(p1.talk == p2.talk);//true
