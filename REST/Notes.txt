@@ -1,0 +1,17 @@
+## REST - (Representational State Transfer)
+
+REST is an architectural style that defines a set of constraints to be used for creating web services.
+
+## RESTful APIs
+## CRUD (create, read, update, destroy)
+
+## CRUD operations
+-> GET : retrieves resources.
+-> POST : submits new data to the server
+-> PUT : updates exiting data
+-> PATCH : update existing data partially
+-> DELETE : removes data
+
+// CRUD operations is happening in resource 
+   resource -> eg: tweets, users
+
