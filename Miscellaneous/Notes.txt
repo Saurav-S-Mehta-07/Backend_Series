@@ -15,3 +15,16 @@ app.use(express.urlencoded({extended:true})); //agr urlencoded form mai hai to
 app.use(express.josn()); //agr json format mai hai to
 
 // this middlewares parse the body to express understandable format
+
+
+
+## OOPs
+
+# object prototypes
+-> Prototypes are the mechanism by which JS objects inherit features from one another.
+-> It is like a single template object that all objects inherit methods and properties from without having
+their own copy
+
+eg : arr.__proto__(reference)
+     Array.prototype(actual object)
+     String.prototype
