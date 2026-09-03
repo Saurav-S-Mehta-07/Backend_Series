@@ -1,0 +1,17 @@
+# Get and Post requests
+Get:
+-> Used to GET some response
+-> Data sent in query strings
+   (limited, string data & visible in URL)
+
+
+Post:
+-> used to POST something (for Create/ Write/Update)
+-> data set via request body (any type of data)
+
+the data comes from req.body in post request to use it do
+
+app.use(express.urlencoded({extended:true})); //agr urlencoded form mai hai to
+app.use(express.josn()); //agr json format mai hai to
+
+// this middlewares parse the body to express understandable format
