@@ -14,6 +14,9 @@
         <div>
             <h3>@<%=post.username%></h3>
             <p><%=post.content%></p>
+            <a href="/posts/<%=post.id%>">show details</a>
+            <br><br>
+            <button>delete</button>
         </div>
     <%}%>
 </body>
