@@ -15,3 +15,15 @@ REST is an architectural style that defines a set of constraints to be used for 
 // CRUD operations is happening in resource 
    resource -> eg: tweets, users
 
+// method-override -> a package in node to use other HTTP verbs patch, put, delete etc.
+
+<form method="POST" action="/resource?_method=DELETE">
+  <button type="submit">Delete resource</button>
+</form>
+
+var express = require('express')
+var methodOverride = require('method-override')
+var app = express()
+ 
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))

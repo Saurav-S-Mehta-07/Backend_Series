@@ -16,7 +16,11 @@
             <p><%=post.content%></p>
             <a href="/posts/<%=post.id%>">show details</a>
             <br><br>
-            <button>delete</button>
+            <a href="/posts/<%=post.id%>/edit">Edit Post</a>
+            <br><br>
+            <form action="/posts/<%=post.id%>?_method=delete" method="post">
+                <button>delete</button>
+            </form>
         </div>
     <%}%>
 </body>
