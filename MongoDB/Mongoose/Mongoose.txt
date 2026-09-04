@@ -43,3 +43,22 @@ User.insertMany([
 // Mongoose uses Operation Buffering
 Mongoose lets you start using your modles immediately, without
 waiting for mongoose to establish a connection to MongoDB.
+
+
+
+// FIND
+Model.find() // return a query object (thennable)
+* Mongoose Queries are not promises. But they have a .then()
+
+eg : User.find().then((data)=>{
+        cosnsole.log(data);
+     })
+
+eg : 
+User.find({age:{$gte:30} })
+.then((res)=>{
+    console.log(res);
+})
+.catch((err)=>{
+    console.log(err);
+})
