@@ -1,0 +1,10 @@
+## Faker  -> a package to generate fake data
+
+## MySQL2 -> a package to connect Node with MySQL
+const mysql = require('mysql2');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  database: 'test',
+  password: "mysqlpassword@123"
+});
