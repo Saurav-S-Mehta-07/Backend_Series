@@ -1,0 +1,42 @@
+## MongoDB
+
+-> mongosh -> mongo shell
+
+-> show dbs;
+-> use database_name;
+
+-> show collections;
+
+
+## the data format inside mongodb is BSON data
+   -> BSON (Binary JSON) javaScript object notation
+
+   JSON
+1. text based
+2. space ineffiecient 
+3. parsing difficult
+4. data type km hote hai Bson jyada data type provide krta hai
+
+
+## collections
+
+-> Document : Mongo stores data in form of Documents (BSON docs) -> key:value pair
+-> Collection : MonogDB stores Documents in Collections.
+
+
+
+## Insert in dbs
+
+show collections;
+
+1. insertOne
+   -> db.collection_name.insertOne({key1:value1, key2:value2});
+
+      // if a collection does not exist, MongoDB creates the collection
+         when you first store data for that collection.
+
+   -> db.collection_name.find(); or db.collection_name.find({});
+      // show all the documents of that perticular collection
+
+2. insertMany(array of documents)
+   -> db.collection_name.insertMany([{},{}]);
