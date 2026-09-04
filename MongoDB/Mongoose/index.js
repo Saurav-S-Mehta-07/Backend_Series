@@ -47,6 +47,8 @@ const User = mongoose.model("User", userSchema); // collection name : users
 // })
 
 
+// find
+
 // User.find({age:{$gte:30} })
 // .then((res)=>{
 //     console.log(res);
@@ -56,13 +58,27 @@ const User = mongoose.model("User", userSchema); // collection name : users
 // })
 
 
-User.findOne({age:{$gte:30}})
-.then((res)=>{
-    console.log(res);
-})
-.catch((err)=>{
-    console.log(err);
-})
+// User.findOne({age:{$gte:30}})
+// .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
+
+
+
+// User.findOne({_id:"6a9aa5023af302b5c35657be"})
+// .then((res)=>{
+//     console.log(res);
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
+
+User.findById("6a9aa5023af302b5c35657be")
+.then((res)=>console.log(res))
+.catch((err)=>console.log(err));
 
 
 async function main() {

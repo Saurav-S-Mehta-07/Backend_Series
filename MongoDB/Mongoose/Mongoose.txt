@@ -62,3 +62,9 @@ User.find({age:{$gte:30} })
 .catch((err)=>{
     console.log(err);
 })
+
+
+# findById
+User.findById("6a9aa5023af302b5c35657be")
+.then((res)=>console.log(res))
+.catch((err)=>console.log(err));
