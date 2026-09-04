@@ -1,0 +1,102 @@
+## MongoDB
+
+-> mongosh -> mongo shell
+
+-> show dbs;
+-> use database_name;
+
+-> show collections;
+
+
+## the data format inside mongodb is BSON data
+   -> BSON (Binary JSON) javaScript object notation
+
+   JSON
+1. text based
+2. space ineffiecient 
+3. parsing difficult
+4. data type km hote hai Bson jyada data type provide krta hai
+
+
+## collections
+
+-> Document : Mongo stores data in form of Documents (BSON docs) -> key:value pair
+-> Collection : MonogDB stores Documents in Collections.
+
+
+
+## Insert in dbs
+
+show collections;
+
+1. insertOne
+   -> db.collection_name.insertOne({key1:value1, key2:value2});
+
+      // if a collection does not exist, MongoDB creates the collection
+         when you first store data for that collection.
+
+   -> db.collection_name.find(); or db.collection_name.find({});
+      // show all the documents of that perticular collection
+
+2. insertMany(array of documents)
+   -> db.collection_name.insertMany([{},{}]);
+
+# Find in db
+
+3. db.collection_name.find() // return everything
+
+for specific queries
+
+4. db.collection_name.find({key:value})
+   db.collection_name.find({key1:value1, key2:value2});
+5. db.collection_name.findOne({key:value});
+
+# query operators
+
+-> db.collection_name.find({key : {$gt:75}});
+-> operators : gt, gte, eq, in, or, and, nor, etc.
+
+eg : db.student.find({$or:[{city:"haldwani"},{name:"adam"}]});
+     db.student.find({name:{$in :["adam","mayank"]}});
+     db.student.find({$and:[{city:"haldwani"},{name:"mayank"}]});
+     db.student.find({$nor:[{city:"haldwani"},{name:"adam"}]});
+
+
+# update in db
+
+6. db.collection_name.updateOne(<filter>, <update>, <options>)
+   -> db.student.updateOne({name:"adam"},{$set:{marks:99}});
+   -> db.student.updateOne({name:"adam"}, {$set:{city:"delhi"}});
+
+8. db.collection_name.updateMany()
+   -> db.student.updateMany({city:"haldwani"},{$set:{city:"mumbai"}});
+
+9. db.collection_name.replaceOne()  -> replace except id
+   -> db.student.replaceOne({name:"Adam"},{name:"adam", marks:97, state:"uttarakhand"});
+ 
+
+# nesting
+
+college> db.student.insertOne({name:"Farah",
+... performance  : {marks:88, grade:"A"}
+... });
+
+db.student.find({"performance.marks":88});
+
+## Delete in db
+
+10. deleteOne
+   db.collection_name.deleteOne(<filter>, <option>)
+   
+   eg : db.student.deleteOne({state:"uttarakhand"});
+
+
+11. deleteMany
+    db.collection_name.deleteMany(<filter>, <options>)
+
+    eg : db.student.deleteMany({city:"mumbai"});
+         db.student.deleteMany({$marks:{$gte:75}});
+         db.student.deleteMany({}); // delete all
+         
+
+12. db.dropDatabase() // delete database
