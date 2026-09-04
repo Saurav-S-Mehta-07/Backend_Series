@@ -91,6 +91,23 @@ const User = mongoose.model("User", userSchema); // collection name : users
 // .catch((err)=>console.log(err));
 
 
+// User.findOneAndUpdate({name:"Bruce"}, {age:45}) // returns old documents data
+// .then((res)=>console.log(res))
+// .catch((err)=>console.log(err));
+
+// User.findOneAndUpdate({name:"Bruce"}, {age:45}, {new:true}) // returns new documents data
+// .then((res)=>console.log(res))
+// .catch((err)=>console.log(err));
+
+// User.findByIdAndUpdate("6a9aa5023af302b5c35657be", {age:49})
+// .then((res)=>console.log(res))
+// .catch((err)=>console.log(err));
+
+// User.findByIdAndUpdate("6a9aa5023af302b5c35657be", {age:49}, {new:true})
+// .then((res)=>console.log(res))
+// .catch((err)=>console.log(err));
+
+
 async function main() {
    await mongoose.connect('mongodb://127.0.0.1:27017/test') // returns promise
 }

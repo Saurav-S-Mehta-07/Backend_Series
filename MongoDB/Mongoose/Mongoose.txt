@@ -73,6 +73,7 @@ User.findById("6a9aa5023af302b5c35657be")
 // Update -> in mongoose not need to use $set operator
 # updateOne
 # updateMany
+these above two method return extra info
 
 
 eg: 
@@ -81,5 +82,16 @@ User.updateOne({name:"Bruce"},{age:51})
 .catch((err)=>console.log(err));
 
 User.updateMany({age:{$gt:35}}, {age:55})
+.then((res)=>console.log(res))
+.catch((err)=>console.log(err));
+
+# findOneAndUpdate()
+# findByIdAndUpdate()
+
+these two update returns document's old data 
+
+pass options {new:true} to get new data : 
+
+User.findOneAndUpdate({name:"Bruce"}, {age:45}, {new:true}) // returns new documents data
 .then((res)=>console.log(res))
 .catch((err)=>console.log(err));
