@@ -95,3 +95,29 @@ pass options {new:true} to get new data :
 User.findOneAndUpdate({name:"Bruce"}, {age:45}, {new:true}) // returns new documents data
 .then((res)=>console.log(res))
 .catch((err)=>console.log(err));
+
+
+
+// Delete in mongoose
+
+# deleteOne() // returns count 
+# deleteMany() // returns count 
+# findByIdAndDelete()
+# findOneAndDelete
+
+// User.deleteOne({name:"Adam"})
+// .then(res=>console.log(res))
+// .catch(err=>console.log(err));
+
+// User.deleteMany({age:{$gt:40}})
+// .then(res=>console.log(res))
+// .catch(err=>console.log(err));
+
+// User.findOneAndDelete({name:"Broune"})
+// .then(res=>console.log(res))
+// .catch(err => console.log(err));
+
+
+// User.findByIdAndDelete("6a9aacf4540387a92b7199eb")
+// .then(res=>console.log(res))
+// .catch(err => console.log(err));

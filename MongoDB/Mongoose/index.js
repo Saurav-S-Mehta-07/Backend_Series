@@ -108,6 +108,25 @@ const User = mongoose.model("User", userSchema); // collection name : users
 // .catch((err)=>console.log(err));
 
 
+// delete in mongoose
+
+// User.deleteOne({name:"Adam"})
+// .then(res=>console.log(res))
+// .catch(err=>console.log(err));
+
+// User.deleteMany({age:{$gt:40}})
+// .then(res=>console.log(res))
+// .catch(err=>console.log(err));
+
+// User.findOneAndDelete({name:"Broune"})
+// .then(res=>console.log(res))
+// .catch(err => console.log(err));
+
+
+// User.findByIdAndDelete("6a9aacf4540387a92b7199eb")
+// .then(res=>console.log(res))
+// .catch(err => console.log(err));
+
 async function main() {
    await mongoose.connect('mongodb://127.0.0.1:27017/test') // returns promise
 }
