@@ -40,3 +40,12 @@ show collections;
 
 2. insertMany(array of documents)
    -> db.collection_name.insertMany([{},{}]);
+
+# Find in db
+
+3. db.collection_name.find() // return everything
+
+for specific queries
+
+4. db.collection_name.find({key:value})
+5. db.collection_name.findOne({key:value});
