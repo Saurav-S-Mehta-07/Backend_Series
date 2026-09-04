@@ -48,4 +48,28 @@ show collections;
 for specific queries
 
 4. db.collection_name.find({key:value})
+   db.collection_name.find({key1:value1, key2:value2});
 5. db.collection_name.findOne({key:value});
+
+# query operators
+
+-> db.collection_name.find({key : {$gt:75}});
+-> operators : gt, gte, eq, in, or, and, nor, etc.
+
+eg : db.student.find({$or:[{city:"haldwani"},{name:"adam"}]});
+     db.student.find({name:{$in :["adam","mayank"]}});
+     db.student.find({$and:[{city:"haldwani"},{name:"mayank"}]});
+     db.student.find({$nor:[{city:"haldwani"},{name:"adam"}]});
+
+
+# update in db
+
+6. db.collection_name.updateOne(<filter>, <update>, <options>)
+   -> db.student.updateOne({name:"adam"},{$set:{marks:99}});
+   -> db.student.updateOne({name:"adam"}, {$set:{city:"delhi"}});
+
+8. db.collection_name.updateMany()
+   -> db.student.updateMany({city:"haldwani"},{$set:{city:"mumbai"}});
+
+9. db.collection_name.replaceOne()  -> replace except id
+   -> db.student.replaceOne({name:"Adam"},{name:"adam", marks:97, state:"uttarakhand"});
