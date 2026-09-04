@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit your Name</h1>
+    <h2>User's Id  : <%=user.id%></h2>
+    <h2>User's email : <%=user.email%>: </h2>
+    <form action="/user/<%=user.id%>?_method=patch" method="post">
+        <label for="username">Username : </label>
+        <input type="text" value="<%=user.username%>" id="username" name="username">
+        <br><br>
+        <label for="password">Password : </label>
+        <input type="password" id="password" name="password">
+        <br><br>
+        <button>submit</button>
+    </form>
+</body>
+</html>
