@@ -83,3 +83,20 @@ college> db.student.insertOne({name:"Farah",
 
 db.student.find({"performance.marks":88});
 
+## Delete in db
+
+10. deleteOne
+   db.collection_name.deleteOne(<filter>, <option>)
+   
+   eg : db.student.deleteOne({state:"uttarakhand"});
+
+
+11. deleteMany
+    db.collection_name.deleteMany(<filter>, <options>)
+
+    eg : db.student.deleteMany({city:"mumbai"});
+         db.student.deleteMany({$marks:{$gte:75}});
+         db.student.deleteMany({}); // delete all
+         
+
+12. db.dropDatabase() // delete database
