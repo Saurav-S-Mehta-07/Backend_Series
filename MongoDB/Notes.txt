@@ -73,3 +73,13 @@ eg : db.student.find({$or:[{city:"haldwani"},{name:"adam"}]});
 
 9. db.collection_name.replaceOne()  -> replace except id
    -> db.student.replaceOne({name:"Adam"},{name:"adam", marks:97, state:"uttarakhand"});
+ 
+
+# nesting
+
+college> db.student.insertOne({name:"Farah",
+... performance  : {marks:88, grade:"A"}
+... });
+
+db.student.find({"performance.marks":88});
+
