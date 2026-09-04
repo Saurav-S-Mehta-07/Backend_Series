@@ -16,18 +16,35 @@ const userSchema = new Schema({
 
 const User = mongoose.model("User", userSchema); // collection name : users
 
+// insert many
+
+User.insertMany([
+    {name:"Tony", email:"tony@gmail.com", age:40},
+    {name:"Broune", email:"broune@gmail.com", age:30},
+    {name:"Bruce", email:"bruce@gmail.com", age:25},
+])
+.then((res)=>{
+    console.log(res);
+})
+.catch((err)=>{
+    console.log(err);
+})
+
+
+// insert one
+
 // const user1 = new User({name:"Adam", email:"adam@gmail.com", age:20});
 // user1.save();
 
-const user2 = new User({name:"Eve", email:"eve@gmail.com", age:20});
+// const user2 = new User({name:"Eve", email:"eve@gmail.com", age:20});
 
-user2.save() // returns promise
-.then((res)=>{
-    console.log("user inserted to the collection : ", res);
-})
-.catch((err)=>{
-    console.log("haha! I found an Error & that is : ", err);
-})
+// user2.save() // returns promise
+// .then((res)=>{
+//     console.log("user inserted to the collection : ", res);
+// })
+// .catch((err)=>{
+//     console.log("haha! I found an Error & that is : ", err);
+// })
 
 
 async function main() {

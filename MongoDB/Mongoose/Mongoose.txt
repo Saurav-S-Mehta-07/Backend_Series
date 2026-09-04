@@ -24,4 +24,22 @@ const User = mongoose.model("User", userSchema);
 
 keep the collection name singular only, it'll automatically done this to plural
 
+const user2 = new User({name:"Eve", email:"eve@gmail.com", age:20});
+user2.save() // returns promise
+.then((res)=>{
+})
+.catch((err)=>{
+})
 
+
+# inserting multiple
+User.insertMany([
+    {},
+    {},
+])
+.then().catch();
+
+
+// Mongoose uses Operation Buffering
+Mongoose lets you start using your modles immediately, without
+waiting for mongoose to establish a connection to MongoDB.
