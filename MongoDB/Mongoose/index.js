@@ -76,9 +76,19 @@ const User = mongoose.model("User", userSchema); // collection name : users
 //     console.log(err);
 // })
 
-User.findById("6a9aa5023af302b5c35657be")
-.then((res)=>console.log(res))
-.catch((err)=>console.log(err));
+// User.findById("6a9aa5023af302b5c35657be")
+// .then((res)=>console.log(res))
+// .catch((err)=>console.log(err));
+
+
+// update
+// User.updateOne({name:"Bruce"},{age:51})
+// .then((res)=>console.log(res))
+// .catch((err)=>console.log(err));
+
+// User.updateMany({age:{$gt:35}}, {age:55})
+// .then((res)=>console.log(res))
+// .catch((err)=>console.log(err));
 
 
 async function main() {
