@@ -3,3 +3,25 @@ A library that creates a connection between MongoDB & Node.js javaScript Runtime
 Environment.
 
 It is an ODM(object Data Modeling) library.
+
+   await mongoose.connect('mongodb://127.0.0.1:27017/test')
+
+
+## Schema
+Schema defines the shape of the documents within that collection.
+
+    new mongoose.Schema({});
+
+
+// to mongoose ke andar documents ko  create krne ke liye hm model use krte hai
+
+## Models
+-> Model in mongoose is a class with which we construct documents.
+-> mongoose ke class js ke class hoti hai (representational)
+
+const User = mongoose.model("User", userSchema);
+    Model_name             (collection_name, Schema_name)
+
+keep the collection name singular only, it'll automatically done this to plural
+
+
