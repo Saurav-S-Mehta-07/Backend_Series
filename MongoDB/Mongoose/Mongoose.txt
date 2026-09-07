@@ -41,7 +41,7 @@ User.insertMany([
 
 
 // Mongoose uses Operation Buffering
-Mongoose lets you start using your modles immediately, without
+Mongoose lets you start using your models immediately, without
 waiting for mongoose to establish a connection to MongoDB.
 
 
@@ -121,3 +121,26 @@ User.findOneAndUpdate({name:"Bruce"}, {age:45}, {new:true}) // returns new docum
 // User.findByIdAndDelete("6a9aacf4540387a92b7199eb")
 // .then(res=>console.log(res))
 // .catch(err => console.log(err));
+
+
+
+// Schema Validations
+
+Basically, Rules for Schema
+
+const bookSchema = mongoose.Schema({
+    title : {
+        type : String,
+        required : true,
+    },
+    author : {
+        type : String,
+    },
+    price : {
+        type : Number,
+    },
+})
+
+Schema Type Options
+
+
