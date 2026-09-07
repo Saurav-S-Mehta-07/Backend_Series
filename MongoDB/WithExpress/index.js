@@ -16,7 +16,7 @@ app.use(methodOverride("_method"))
 
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/amazon')
+    await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp')
 }
 
 
@@ -25,9 +25,7 @@ app.get("/",(req,res)=>{
 })
 
 
-app.listen(PORT, ()=>{
-    console.log(`Listening to PORT ${PORT}`)
-
+const connectToDB = ()=>{
     main()
     .then((res)=>{
         console.log("MongoDB Connected Successfully!")
@@ -35,5 +33,9 @@ app.listen(PORT, ()=>{
     .catch((err)=>{
         console.log("Error  : ", err.message)
     })
-    
+}
+
+app.listen(PORT, ()=>{
+    console.log(`Listening to PORT ${PORT}`)
+    connectToDB()
 })
