@@ -7,12 +7,13 @@ const listingSchema = Schema({
       type : String,
       required:true,
     },
-    discription:{
+    description:{
         type : String,
         required : true,
     },
     image : {
        type:String,
+       default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX4K-D7rFeL1Fta30QgEQQ5Aik7WFhDmZbcXjPr0M6Ng&s=10",
        set : (v) => v === "" ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX4K-D7rFeL1Fta30QgEQQ5Aik7WFhDmZbcXjPr0M6Ng&s=10":v,
     },
     price:{
