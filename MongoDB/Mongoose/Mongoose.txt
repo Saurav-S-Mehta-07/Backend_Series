@@ -143,4 +143,28 @@ const bookSchema = mongoose.Schema({
 
 Schema Type Options
 
+# schema validation with update
+
+Book.findByIdAndUpdate("6a9e4ab0ead7f4ef530e0d55", {price:-500})
+.then(res=>console.log("Result ", res))
+.catch(err=>console.log(err.message))
+
+this above command will update the price even price can't be < than 0
+
+to do that we have to pass options : {runValidators: true}
+
+Book.findByIdAndUpdate("6a9e4ab0ead7f4ef530e0d55", {price:-500}, {runValidators:true})
+.then(res=>console.log("Result ", res))
+.catch(err=>console.log(err.message))
+
+
+
+
+price : {
+        type : Number,
+        min : [0, "Price is too low for Amazon selling"], // this is how we show custom error
+    },
+
+
+// console.log(err.errors.price.properties.message); or err.message
 
