@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Chat</title>
+    <style>
+        .new-chat{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1{
+            color: green;
+        }
+
+        input, textarea{
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+
+        form{
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid black;
+        }
+
+        button{
+            color: green;
+            padding: 14px;
+            border: 1px solid black;
+            width: 100%;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="new-chat">
+        <h1>Edit this Chat</h1>
+        <form action="/chats/<%=chat._id%>?_method=patch" method="post">
+            <h2>From : <i><%=chat.from%></i></h2>
+            <h2>To : <i><%=chat.to%></i></h2>
+            <br><br>
+            <label for="msg">Update Your Message here : </label><br><br>
+            <textarea rows="10" name="msg" id="msg" placeholder="enter your message..."><%=chat.msg%></textarea>
+            <br><br>
+            <button type="submit">Update Chat</button>
+        </form>
+    </div>
+</body>
+</html>
