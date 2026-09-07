@@ -13,6 +13,11 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(methodOverride("_method"))
 
+
+const Listing = require("./models/listing")
+
+
+// connection to DB
 const mongodb_url = 'mongodb://127.0.0.1:27017/explora'
 async function main() {
     await mongoose.connect(mongodb_url)
@@ -22,8 +27,39 @@ const connectToDB = ()=>{
     .catch((err)=>console.log("Error : ", err))
 }
 
+
+// our Routes
 app.get("/",(req,res)=>{
-    res.send("home")
+    res.redirect("/listings")
+})
+
+
+// Index Route
+app.get("/listings",async(req,res)=>{
+    let allListings = await Listing.find()
+    res.render("listings/index.ejs",{allListings})
+})
+
+
+// New Route
+app.get("/listings/new",(req,res)=>{
+    res.render("listings/new.ejs");
+})
+
+// Show Route
+app.get("/listings/:id", async(req,res)=>{
+    let {id} = req.params;
+    let listing = await Listing.findById(id);
+    res.render("listings/show.ejs", {listing});
+})
+
+
+
+//Create Route
+app.post("/listings",async(req,res)=>{
+    let listing = req.body
+    await Listing.insertOne(listing)
+    res.redirect("/listings")
 })
 
 app.listen(PORT,()=>{
