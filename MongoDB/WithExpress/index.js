@@ -14,11 +14,21 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(methodOverride("_method"))
 
+const Chat = require("./schema")
+
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp')
 }
 
+
+Chat.deleteMany({})
+.then(res=>console.log(res))
+.catch(err=>console.log(err.message))
+
+Chat.insertOne({from:"Saurav", to:"Mayank", msg:"come soon", created_at : new Date()})
+.then(res=>console.log(res))
+.catch(err=>console.log(err.message))
 
 app.get("/",(req,res)=>{
     res.send("Home")
