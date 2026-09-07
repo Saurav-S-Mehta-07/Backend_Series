@@ -46,6 +46,13 @@ app.get("/listings/new",(req,res)=>{
     res.render("listings/new.ejs");
 })
 
+//Create Route
+app.post("/listings",async(req,res)=>{
+    let listing = req.body.listing
+    await Listing.insertOne(listing)
+    res.redirect("/listings")
+})
+
 // Show Route
 app.get("/listings/:id", async(req,res)=>{
     let {id} = req.params;
@@ -54,13 +61,22 @@ app.get("/listings/:id", async(req,res)=>{
 })
 
 
-
-//Create Route
-app.post("/listings",async(req,res)=>{
-    let listing = req.body
-    await Listing.insertOne(listing)
-    res.redirect("/listings")
+//edit route
+app.get("/listings/:id/edit",async(req,res)=>{
+    let {id} = req.params
+    let listing = await Listing.findById(id)
+    res.render("listings/edit.ejs",{listing})
 })
+
+// update route
+app.put("/listings/:id",async(req,res)=>{
+    let {id} = req.params
+    let listing = req.body.listing
+    await Listing.findByIdAndUpdate(id, listing, {runValidators : true})
+    res.redirect(`/listings/${id}`);
+})
+
+
 
 app.listen(PORT,()=>{
     console.log(`Listening to PORT ${PORT}`)
