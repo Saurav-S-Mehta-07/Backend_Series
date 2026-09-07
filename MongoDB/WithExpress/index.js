@@ -14,7 +14,8 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(methodOverride("_method"))
 
-const Chat = require("./schema")
+const Chat = require("./models/Chat.js")
+const { resourceLimits } = require("worker_threads")
 
 
 async function main() {
@@ -22,18 +23,51 @@ async function main() {
 }
 
 
-Chat.deleteMany({})
-.then(res=>console.log(res))
-.catch(err=>console.log(err.message))
-
-Chat.insertOne({from:"Saurav", to:"Mayank", msg:"come soon", created_at : new Date()})
-.then(res=>console.log(res))
-.catch(err=>console.log(err.message))
-
 app.get("/",(req,res)=>{
-    res.send("Home")
+    res.redirect('/chats')
 })
 
+app.get("/chats",async(req,res)=>{
+    let chats = await Chat.find();
+    let date = chats[0].created_at
+    res.render("index",{chats})
+})
+
+app.get("/chats/new",(req,res)=>{
+    res.render("new")
+})
+
+app.post("/chats",async(req,res)=>{
+    let {from, to, msg} = req.body;
+    let created_at = new Date();
+    let newChat = {from:from, to:to, msg:msg, created_at:created_at}
+    let result = await Chat.insertOne(newChat)
+    res.redirect("/chats")
+})
+
+
+app.get("/chats/:id/edit", async(req,res)=>{
+    let {id} = req.params
+    let chat = await Chat.findById(id)
+    console.log(chat)
+    res.render("edit", {chat})
+})
+
+app.patch("/chats/:id",async(req,res)=>{
+    let {id} = req.params
+    let {msg} = req.body;
+    let updatedChat = {msg:msg, created_at: new Date()}
+    let result = await Chat.findByIdAndUpdate(id, updatedChat)
+    res.redirect("/chats")
+})
+
+app.delete("/chats/:id", async(req,res)=>{
+    let {id} = req.params
+
+    let result = await Chat.findByIdAndDelete(id);
+    console.log(result, "this chat is deleted successfully")
+    res.redirect("/chats")
+})
 
 const connectToDB = ()=>{
     main()
