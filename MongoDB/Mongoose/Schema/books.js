@@ -20,7 +20,7 @@ const bookSchema = mongoose.Schema({
     },
     price : {
         type : Number,
-        min : 0,
+        min : [0, "Price is too low for Amazon selling"],
     },
     discount : {
         type : Number,
@@ -37,20 +37,30 @@ const bookSchema = mongoose.Schema({
 
 const Book = mongoose.model("Book", bookSchema);
 
-Book.deleteMany({})
-.then(res=>console.log(res))
-.catch(err=>console.log(err))
+// Book.deleteMany({})
+// .then(res=>console.log(res))
+// .catch(err=>console.log(err))
 
-let book1 = new Book({
-    title:"Mathematics XII",
-     price:99, author:"RD Sharma",
-    category:"non-fiction",
-    genre : ["Maths", "non-fiction", "schools"]
-})
-book1.save()
-.then((res)=>{
-    console.log(res)
-})
+// let book1 = new Book({
+//     title:"Mathematics XII",
+//      price:99, author:"RD Sharma",
+//     category:"non-fiction",
+//     genre : ["Maths", "non-fiction", "schools"]
+// })
+// book1.save()
+// .then((res)=>{
+//     console.log(res)
+// })
+// .catch(err=>console.log(err.message))
+
+
+
+// Book.findByIdAndUpdate("6a9e4ab0ead7f4ef530e0d55", {price:-500}) // will update to -500
+// .then(res=>console.log("Result ", res))
+// .catch(err=>console.log(err.message))
+
+Book.findByIdAndUpdate("6a9e4ab0ead7f4ef530e0d55", {price:-500}, {runValidators:true}) // it will check validation first
+.then(res=>console.log("Result ", res))
 .catch(err=>console.log(err.message))
 
 
