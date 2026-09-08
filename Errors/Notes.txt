@@ -14,43 +14,69 @@ error handler otherwise it will show can't get /error_route
 app.get("/error", (req, res) => {
     abcd = abcd;
 });
-
 app.use((err, req, res, next) => {
     console.log("-----------------error----------");
     next();
 });
-
 app.use((err,req,res,next)=>{
     console.log("-------2nd error handler------");
     next(err);
 })
-
 // can't get /error
 
 ********************************************
 
-
-
 app.get("/error", (req, res) => {
     abcd = abcd;
 });
-
 app.use((err, req, res, next) => {
     console.log("-----------------error----------");
     next(err);
 });
-
 app.use((err,req,res,next)=>{
     console.log("-------2nd error handler------");
     next(err);
 })
-
 // ReferenceError: abcd is not defined
 
 ************************************************
 
-
 next() or next(err)
-
 next() : call next non-error handling middleware
 next(err) : call next error handling middleware
+
+***********************************************
+
+# custorm Error classes
+
+class ExpressError extends Error{}
+// our custom expressError  class extends express Error class
+
+
+************************************
+class ExpressError extends Error{
+    constructor(status, message){
+        super();
+        this.status = status;
+        this.message = message;
+    }
+}
+
+module.exports = ExpressError
+****************************************
+const ExpressError = require("./ExpressError");
+app.use("/api",(req,res,next)=>{
+    let {token} = req.query;
+    if(token === "access123"){
+        return next();
+    }
+    throw new ExpressError(401, "Access Denied");
+})
+app.get("/api",(req,res)=>{
+    res.send("data")
+})
+app.use((err, req, res, next) => {
+    console.log("-----------------error----------");
+    res.send(err); // {"status": 401,"message": "Access Denied"}
+});
+*********************************************
