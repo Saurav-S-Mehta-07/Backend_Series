@@ -80,3 +80,102 @@ app.use((err, req, res, next) => {
     res.send(err); // {"status": 401,"message": "Access Denied"}
 });
 *********************************************
+
+app.get("/error", (req, res) => {
+    abcd = abcd;
+});
+
+app.get("/admin",(req,res)=>{
+    throw new ExpressError(403, "Access to admin is forbidden");
+})
+
+app.use((err, req, res, next) => {
+    let {status = 500, message = "Some Error"} = err;
+    res.status(status).send(message);
+});
+
+***********************************************
+
+# Handling Async Errors
+1> normal Errors
+2> async errors -> custom Express Error
+3> try-catch (bulky way)
+4> wrapAsync
+
+
+## do this in MongoDB/WithExpress whatsapp db ke sath
+
+app.get("/chats/new",(req,res)=>{
+    // throw new ExpressError(404, "Page not found") //trying handler in non-async function
+    res.render("new")
+})
+
+//show route
+app.get("/chats/:id",async(req,res)=>{
+    let {id} = req.params;
+    let chat = await Chat.findById(id)
+    if (!chat){
+      throw new ExpressError(404, "Chat not found") //trying handler in async function
+    }
+    res.render("show.ejs",{chat})
+})
+
+// if error is here 
+in this case next() is not called by express bydefault
+so we explicitly call next()
+
+app.get("/chats/:id",async(req,res)=>{
+    let {id} = req.params;
+    let chat = await Chat.findById(id)
+    if (!chat){
+      return next(new ExpressError(404, "Chat not found")) //trying handler in async function
+    }
+    res.render("show.ejs",{chat})
+})
+
+** in async function we explicitly call next()
+
+* handling async function
+1. id -> doesn't exist
+2.validation error (rules/constrains) mai error
+
+
+for such rules/ validation error we use "try-catch"
+
+app.post("/chats",async(req,res,next)=>{
+   try{
+        let {from, to, msg} = req.body;
+        let created_at = new Date();
+        let newChat = {from:from, to:to, msg:msg, created_at:created_at}
+        let result = await Chat.insertOne(newChat)
+        res.redirect("/chats")
+   }
+   catch(err){
+     next(err);
+   }
+})
+
+*******************************
+
+if (!chat){
+      return  next(new ExpressError(404, "Chat not found")) // explicitly call next and now handler work
+}
+
+this async handler only called when chat is empty 
+
+but using try-catch if any error occurred it will handled
+
+*******************************************************
+
+## using wrapAsync
+function asyncWrap(fn){
+    return function(req,res,next){
+        fn(req,res,next).catch(err => next(err));
+    }
+}
+
+app.get("/chats/:id/edit", asyncWrap(async(req,res)=>{
+    let {id} = req.params
+    let chat = await Chat.findById(id)
+    res.render("edit", {chat})
+}))
