@@ -13,21 +13,25 @@
     </div>
     <div class="chats">
         <%for(chat of chats){%>
-        <div class="chat">
-            <div>
-              <h2><span><%=chat.from.charAt(0)%></span> <i><%= chat.from%></i></h2>
-              <h2>To : <i><%=chat.to%></i></h2>
-            </div>
-            <h3>Message : <%=chat.msg%></h3>
-            <p><%=chat.created_at%></p>
-            <div class="extra=btns">
-                <a href="/chats/<%=chat._id%>/edit"><button class="edit-btn">🖊</button></a>
-                
-                <form action="/chats/<%=chat.id%>?_method=delete" method="post">
-                    <button class="dlt-btn">🗑️</button>
-                </form>
-            </div>
-        </div>
+                <div class="chat">
+                 <a href="/chats/<%=chat._id%>">
+                 
+                    <div>
+                    <h2><span><%=chat.from.charAt(0)%></span> <i><%= chat.from%></i></h2>
+                    <h2>To : <i><%=chat.to%></i></h2>
+                    </div>
+                    <h3>Message : <%=chat.msg%></h3>
+                    <p><%=chat.created_at%></p>
+                    <div class="extra=btns">
+                        <a href="/chats/<%=chat._id%>/edit"><button class="edit-btn">🖊</button></a>
+                        
+                        <form action="/chats/<%=chat.id%>?_method=delete" method="post">
+                            <button class="dlt-btn">🗑️</button>
+                        </form>
+                    </div>
+                 </a>
+
+                </div>
         <%}%>
     </div>
 </body>

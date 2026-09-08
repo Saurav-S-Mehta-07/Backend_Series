@@ -53,13 +53,21 @@ app.get("/chats/:id/edit", async(req,res)=>{
     res.render("edit", {chat})
 })
 
+app.get("/chats/:id",async(req,res)=>{
+    let {id} = req.params;
+    let chat = await Chat.findById(id)
+    res.render("show.ejs",{chat})
+})
+
 app.patch("/chats/:id",async(req,res)=>{
     let {id} = req.params
     let {msg} = req.body;
     let updatedChat = {msg:msg, created_at: new Date()}
-    let result = await Chat.findByIdAndUpdate(id, updatedChat, {runValidators:true, new :true})
+    let result = await Chat.findByIdAndUpdate(id, updatedChat, {runValidators:true})
     res.redirect("/chats")
 })
+
+
 
 app.delete("/chats/:id", async(req,res)=>{
     let {id} = req.params

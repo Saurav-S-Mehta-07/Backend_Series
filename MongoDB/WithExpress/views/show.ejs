@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1 id="heading">Your Chat</h1>
+    <div class="chats">
+        <div class="chat">
+            <div>
+            <h2><span><%=chat.from.charAt(0)%></span> <i><%= chat.from%></i></h2>
+            <h2>To : <i><%=chat.to%></i></h2>
+            </div>
+            <h3>Message : <%=chat.msg%></h3>
+            <p><%=chat.created_at%></p>
+            <div class="extra=btns">
+                <a href="/chats/<%=chat._id%>/edit"><button class="edit-btn">🖊</button></a>
+                
+                <form action="/chats/<%=chat.id%>?_method=delete" method="post">
+                    <button class="dlt-btn">🗑️</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
