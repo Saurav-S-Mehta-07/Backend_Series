@@ -78,3 +78,18 @@ app.use((req,res,next)=>{
     console.log("after next") // it will also executed but right way to do or write like this
 })
 
+
+
+## Creating Utility Middleware
+logger -> helps to log (useful info console print)
+useful info -> request's method(post, get, put, delete, patch), time
+
+app.use((req,res,next)=>{
+    req.time = new Date().toString();
+    console.log(req.method, req.hostname, req.path, req.time);
+    next()
+})
+
+
+# app.use Callback
+

@@ -17,18 +17,45 @@ const app = express();
 // })
 
 
-app.use((req,res,next)=>{
-    console.log("I'm a middleware for all")
+// app.use((req,res,next)=>{
+//     console.log("I'm a middleware for all")
+//     next()
+// })
+
+// app.use((req,res,next)=>{
+//     console.log("I'm an another middleware for all")
+//     next()
+// })
+
+// app.get("/",(req,res)=>{
+//     res.send("HI! I'm home root")
+// })
+
+
+
+// utility middleware example
+// logger
+// app.use((req,res,next)=>{
+//     req.time = new Date().toString();
+//     console.log(req.method, req.hostname, req.path, req.time);
+//     next()
+// })
+
+
+// this middleware run for all routes as previous
+app.use("/",(req,res,next)=>{
+    console.log("I'm only / route but I'll run for all")
     next()
 })
 
-app.use((req,res,next)=>{
-    console.log("I'm an another middleware for all")
+// this middleware for specific path /random and /random/anything
+app.use("/random",(req,res,next)=>{
+    console.log("I'm only for random")
     next()
 })
 
 app.get("/",(req,res)=>{
-    res.send("HI! I'm home root")
+    res.send("I'm a home route")
 })
 
 app.get("/random",(req,res)=>{
