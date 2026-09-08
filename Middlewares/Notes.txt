@@ -1,0 +1,80 @@
+# Middleware
+
+It is an intermediary
+
+request->middleware->response
+
+in Express
+middleware in express are functions that come into play
+after the server receives the request and before the 
+response is sent to the client
+
+
+## common middleware functions:
+* methodOverride
+* bodyParser
+* express.static
+* express.urlencoded
+
+app.use(express.urlencoded({extended:true}));
+
+app.use(express.static(path.join(__dirname, "/pulic")));
+
+
+
+##
+
+1. middleware can access req, res object
+2. chaining is posible in middleware
+3. send a response and can break the chaining
+
+
+# what do middlewares do?
+  Middleware functions can perform the following tasks:
+  * Execute any code.
+  * Make changes to the request and the reponse objects.
+  * End the request-response cycle.
+  * Call the next middleware function in the stack.
+
+# our 1st middleware
+app.use(middleware)
+
+
+
+// middlewares
+
+
+// works for all paths but continuous load 
+
+app.use(()=>{
+    console.log("Hi, I am a middleware")
+});
+
+//using req & res object in middleware
+app.use((req,res)=>{
+    let {q} = req.query
+    console.log(q)
+    console.log("hi, I'm a middleware");
+    res.send("bye");
+})
+
+
+## Using next
+the next middleware function is commonly denoted
+by a variable named next.
+
+//also for all path but not continuous load call the next
+app.use((req,res,next)=>{
+    console.log("time: ", Date.now())
+    next()
+})
+
+If the currect middleware function does not end the request-response
+cycle, it must call next() to pass control to the next middleware function
+
+app.use((req,res,next)=>{
+    console.log("time: ", Date.now())
+    next()
+    console.log("after next") // it will also executed but right way to do or write like this
+})
+
