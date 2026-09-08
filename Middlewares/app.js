@@ -75,7 +75,8 @@ const checkToken = (req,res,next)=>{
     if(token==="access123"){
        return next();
     }
-    res.send("access denied");
+    // res.send("access denied")
+    throw new Error("Access Denied") // custom error
 }
 
 const isLoggedIn = (req,res,next)=>{
@@ -83,7 +84,7 @@ const isLoggedIn = (req,res,next)=>{
     if(login==="saurav"){
        return next();
     }
-    res.send("access denied");
+    throw new Error("Access Denied")
 }
 
 app.get("/api",checkToken,isLoggedIn,(req,res)=>{
@@ -93,6 +94,12 @@ app.get("/api",checkToken,isLoggedIn,(req,res)=>{
 app.get("/",(req,res)=>{
     res.send("I'm a home route")
 })
+
+
+app.get("/wrong",(req,res)=>{
+    abcd
+})
+
 
 app.get("/random",(req,res)=>{
     res.send("This is a random page")

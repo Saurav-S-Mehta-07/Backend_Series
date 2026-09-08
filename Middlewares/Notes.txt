@@ -157,4 +157,5 @@ const isLoggedIn = (req,res,next)=>{
 
 
 # Handling Errors
-Express Default Error Handler
+Express Default Error Handler 
+this error handler is a middleware functions
