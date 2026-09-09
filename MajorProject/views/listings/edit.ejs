@@ -4,7 +4,8 @@
       <h3 class="mt-3">Edit your Listing</h3>
       <form method="POST" 
             action="/listings/<%= listing._id %>?_method=PUT"
-    
+            class="needs-validation"
+            novalidate
       >
          <div class="mb-2">
             <label for="title" class="form-label">Title</label>
@@ -40,6 +41,7 @@
                   value="<%= listing.image %>" 
                   type="file"  class="form-control"
                    id="image"
+                   required
             />
          </div>
         
@@ -49,6 +51,7 @@
                    value="<%= listing.price %>" 
                    type="number" class="form-control" 
                    id="price"
+                   min="0"
                    required
             />
             <div class="invalid-feedback">
@@ -88,9 +91,6 @@
                </div>
             </div>
          </div>
-
-  
-         
         <button  class="mb-2 edit-btn">Edit</button>
       </form>
   </div>
