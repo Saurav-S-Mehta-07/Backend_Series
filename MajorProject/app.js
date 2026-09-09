@@ -34,6 +34,14 @@ const connectToDB = ()=>{
     .catch((err)=>console.log("Error : ", err))
 }
 
+const validateListing = (req,res,next)=>{
+    let {error} =  listingSchema.validate(req.body)
+    if(error){
+       next(new ExpressError(400, error))
+    }
+    next();
+}
+
 
 // our Routes
 app.get("/",(req,res)=>{
@@ -54,13 +62,8 @@ app.get("/listings/new",(req,res)=>{
 })
 
 //Create Route
-app.post("/listings",wrapAsync(async(req,res,next)=>{
+app.post("/listings", validateListing ,wrapAsync(async(req,res,next)=>{
     let listing = req.body.listing
-    let result =  listingSchema.validate(req.body)
-    console.log(result)
-    if(result.error){
-       throw new ExpressError(400, result.error)
-    }
     let newListing = new Listing(listing)
     await newListing.save()
     res.redirect("/listings")
@@ -82,7 +85,7 @@ app.get("/listings/:id/edit",wrapAsync(async(req,res)=>{
 }))
 
 // update route
-app.put("/listings/:id",wrapAsync(async(req,res)=>{
+app.put("/listings/:id",validateListing,wrapAsync(async(req,res)=>{
     let {id} = req.params
     let listing = req.body.listing
     if(!listing){
