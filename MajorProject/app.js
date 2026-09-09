@@ -37,7 +37,8 @@ const connectToDB = ()=>{
 const validateListing = (req,res,next)=>{
     let {error} =  listingSchema.validate(req.body)
     if(error){
-       next(new ExpressError(400, error))
+        let errMsg = error.details.map((el)=>el.message).join(",");
+       next(new ExpressError(400, errMsg))
     }
     next();
 }
