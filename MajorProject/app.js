@@ -21,6 +21,8 @@ const Listing = require("./models/listing")
 const wrapAsync = require("./utils/wrapAsync.js")
 const ExpressError = require("./utils/ExpressError.js")
 
+const listingSchema = require("./schema.js");
+
 
 // connection to DB
 const mongodb_url = 'mongodb://127.0.0.1:27017/explora'
@@ -54,8 +56,10 @@ app.get("/listings/new",(req,res)=>{
 //Create Route
 app.post("/listings",wrapAsync(async(req,res,next)=>{
     let listing = req.body.listing
-    if(!req.body.listing){
-       throw new ExpressError(400, "Send valid data for listing")
+    let result =  listingSchema.validate(req.body)
+    console.log(result)
+    if(result.error){
+       throw new ExpressError(400, result.error)
     }
     let newListing = new Listing(listing)
     await newListing.save()
