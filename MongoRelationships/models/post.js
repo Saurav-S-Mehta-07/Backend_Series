@@ -53,7 +53,8 @@ const addData = async()=>{
 // addData();
 
 const findPost = async()=>{
-    let res = await Post.find({}).populate("user")
+    // let res = await Post.findOne({}).populate("user")
+    let res = await Post.findOne({}).populate("user", "username");  // not user ke andar sirf username aayega
     console.log(res);
 }
 
