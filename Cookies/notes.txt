@@ -1,0 +1,51 @@
+# cookies
+web cookies
+
+
+HTTP cookies are small blocks of data created by a web server while a user is browsing a website and
+placed on the user's computer or other device by the user's web browser
+
+
+## How to send cookies
+in express
+
+app.get("/setcookies", (req,res)=>{
+    res.cookie("greet", "namaste");
+    res.cookie("Origing", "India");
+    res.send("we sent you a cookie!);
+})
+
+
+## cookie-parser package
+
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
+app.get("/setcookies",(req,res)=>{
+    res.cookie("name", "saurav");
+  res.send("sent you some cookies")
+})
+
+app.get("/getcookies",(req,res)=>{
+    // console.dir(req.cookies);
+    let {name = "user"} = req.cookies;
+    res.send(`got the cookies => name : ${name}`);
+})
+
+
+***************************
+## Signed cookies
+send signed cookie
+
+app.use(cookieParser("secretcode"));
+app.get("/getsignedcookie",(req,res)=>{
+    res.cookie("color", "red", {signed:true});
+    res.send("done!");
+})
+
+// verify signed cookie
+app.get("/verify",(req,res)=>{
+    res.send(req.signedCookies);
+})
+
+// usign this signed cookie cookie will not changed after set 
