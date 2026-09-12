@@ -10,6 +10,10 @@ const session = require("express-session")
 const flash = require("connect-flash")
 const cookieParser = require("cookie-parser")
 
+const possport = require("passport");
+const LocalStretegy = require("passport-local");
+const User = require("./models/user.js");
+
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "/views"))
 app.use(express.static(path.join(__dirname, "/public")))
@@ -22,6 +26,7 @@ const ExpressError = require("./utils/ExpressError.js")
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
+const passport = require("passport")
 
 // connection to DB
 const mongodb_url = 'mongodb://127.0.0.1:27017/explora'
@@ -41,9 +46,18 @@ const sessionOptions = {
         httpOnly : true
     }
 };
+
 app.use(session(sessionOptions));
 app.use(cookieParser())
 app.use(flash())
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStretegy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req,res,next)=>{
