@@ -13,6 +13,14 @@ app.use(session(sessionOpion))
 app.use(flash());
 
 
+// flash msg middleware
+
+app.use((req,res,next)=>{
+    res.locals.msg = req.flash("success");
+    next();
+})
+
+
 app.get("/",(req,res)=>{
     res.send("it is a root page")
 })
@@ -28,8 +36,8 @@ app.get("/register",(req,res)=>{
 
 app.get("/hello",(req,res)=>{
     // res.render("index",{name : req.session.name, msg : req.flash("success")})
-
-    res.locals.msg = req.flash("success");
+    // res.locals.msg = req.flash("success");
+    // now in middleware
     res.render("index", {name : req.session.name});
 })
 
