@@ -10,12 +10,10 @@ async function main() {
     await mongoose.connect(mongodb_url)
 }
 
-
 const orderSchema = new Schema({
     item : String,
     price : Number,
 })
-
 
 const customerSchema = new Schema({
     name : String,
@@ -27,21 +25,26 @@ const customerSchema = new Schema({
     ]
 })
 
+// customerSchema.pre("findOneAndDelete",async()=>{
+//     console.log("Pre Middleware");
+// });
+
+customerSchema.post("findOneAndDelete",async (customer)=>{
+    if(customer.orders.length){
+        await Order.deleteMany({_id : {$in : customer.orders }})
+    }
+});
 
 const Order = mongoose.model("Order", orderSchema);
-
 const addOrders = async()=>{
     await Order.insertMany([
         {item : "Banana", price : 20},
         {item : "apple", price : 20},
-        {item : "chocolate", price : 50},
+        // {item : "chocolate", price : 50},
     ]);
 }
-
 // addOrders()
-
 const Customer = mongoose.model("Customer", customerSchema);
-
 const addCustomer = async()=>{
    let cust1 = new Customer({
     name : "Saurav",
@@ -57,15 +60,40 @@ const addCustomer = async()=>{
    let result = await cust1.save();
    console.log(result);
 }
-
 // addCustomer();
-
-
 const findCustomers = async()=>{
     let result = await Customer.find({}).populate("orders")
     console.log(result[0]);
 }
 
-findCustomers();
+// findCustomers();
 
 
+// mongoose middleware for handling deletion
+
+const addCust = async()=>{
+    let newCust = new Customer({
+        name : "Karan",
+    });
+
+    let newOrd = new Order({
+        item : "Burgur",
+        price : 99
+    });
+
+    newCust.orders.push(newOrd);
+    
+    await newOrd.save();
+    await newCust.save();
+    console.log("added new cust");
+}
+
+// addCust()
+
+const deleteCust = async()=>{
+    let dltData = await Customer.findByIdAndDelete("6aa4e8e326de94ebacf2e9ae");
+    // await Order.deleteMany({ _id: { $in: dltData.orders } }); // correct but written in post middleware
+    console.log(dltData);
+}
+
+deleteCust();

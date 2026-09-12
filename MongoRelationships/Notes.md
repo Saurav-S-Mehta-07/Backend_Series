@@ -207,3 +207,10 @@ Five: Consider the read-to-write ratio with denormalization. A field that will m
 
 Six: As always with MongoDB, how you model your data depends entirely on your particular application’s data access patterns. You want to structure your data to match the ways that your application queries and updates it.
 
+*****************************************
+
+## Handling Deletion
+* using Mongoose Middleware
+* we can use 2 middlewares:
+  * Pre  - run before the query is executed
+  * post - run after the query is executed
