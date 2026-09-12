@@ -27,7 +27,10 @@ app.get("/register",(req,res)=>{
 })
 
 app.get("/hello",(req,res)=>{
-    res.render("index",{name : req.session.name, msg : req.flash("success")})
+    // res.render("index",{name : req.session.name, msg : req.flash("success")})
+
+    res.locals.msg = req.flash("success");
+    res.render("index", {name : req.session.name});
 })
 
 

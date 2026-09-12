@@ -40,3 +40,6 @@ browser side  :
 
 The flash is a  special area of the session used for storing messages. Messages are
 written to the flash and cleared after being displayed to the user.
+
+1. req.flash()
+2. res.local()
