@@ -30,3 +30,51 @@ it is used for Authentication & Authorization
 > npm i passport
 > npm i passport-local 
 > npm i passport-local-mongoose
+
+## 
+const mongoose = require("mongoose");
+const {Schema} = mongoose;
+const passportLocalMongoose = require("passport-local-mongoose")
+const userSchema = new Schema({
+    email : {
+        type :String,
+        required : true,
+    },
+});
+userSchema.plugin(passportLocalMongoose);
+const User = mongoose.model("User", userSchema);
+module.exports = User;
+
+* this passportLocalMongoose automatically add username, hashing, salting and hashed password to model
+
+
+## Configuring Stategy
+
+passport.initialize()
+a middleware that initializes passport
+
+passport.session()
+a web application needs the ability to identify users as they browse from page to page.
+This series of requests and responses, each associated with the same user, is known as a session.
+
+passport.use(new LocalStrategy(User.authenticate()))
+
+
+
+
+
+
+
+
+
+
+******************
+const possport = require("passport");
+const LocalStretegy = require("passport-local");
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStretegy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
