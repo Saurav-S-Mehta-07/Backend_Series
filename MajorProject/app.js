@@ -6,6 +6,10 @@ const methodOverride = require("method-override")
 const mongoose =  require("mongoose")
 const ejsMate = require("ejs-mate")
 
+const session = require("express-session")
+const flash = require("connect-flash")
+const cookieParser = require("cookie-parser")
+
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "/views"))
 app.use(express.static(path.join(__dirname, "/public")))
@@ -24,10 +28,16 @@ const mongodb_url = 'mongodb://127.0.0.1:27017/explora'
 async function main() {
     await mongoose.connect(mongodb_url)
 }
-const connectToDB = ()=>{
-    main().then(()=>console.log("Connected to MongoDB Successfully!"))
-    .catch((err)=>console.log("Error : ", err))
-}
+
+
+// session 
+const sessionOptions = {
+    secret : "mysupersecretkey",
+    resave:false,
+    saveUninitialized : true
+};
+
+app.use(session(sessionOptions));
 
 // our Routes
 app.get("/",(req,res)=>{
@@ -49,5 +59,7 @@ app.use((err,req,res,next)=>{
 
 app.listen(PORT,()=>{
     console.log(`Listening to PORT ${PORT}`)
-    connectToDB()
+
+    main().then(()=>console.log("Connected to MongoDB Successfully!"))
+    .catch((err)=>console.log("Error : ", err))
 })
