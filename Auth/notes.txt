@@ -1,0 +1,32 @@
+# Authentication
+Authentication is the process of verifying who someone is
+
+# Authorization
+Authorization is the process of verifying What specific appliations, files, and data a user
+has access to
+
+
+# Storing Passwords
+we never store the passwords as it is, We store their hashed form.
+
+password -> hash function -> how it is stored
+("helloworld)                ("9302ukajgfj931kjkanja-393kjaf")
+
+
+## Hashing : 
+what we need to know?
+ * for every input, there is a fixed output
+ * They are one-way functions, we can't get input from output
+ * for a different input, there is a different output but of same length
+ * small changes in input should bring large cahnges in output
+
+## Salting
+Password salting is a technique to protect passwords stored in databases by adding a 
+string of 32 or more characters and then hashing them.
+
+## Passport : very useful tool with node.js 
+it is used for Authentication & Authorization
+
+> npm i passport
+> npm i passport-local 
+> npm i passport-local-mongoose
