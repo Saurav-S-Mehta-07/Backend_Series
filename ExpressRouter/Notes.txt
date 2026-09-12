@@ -1,0 +1,6 @@
+# express Router
+
+express router are a way to organize your express application such that our primary app.js file does
+not become bloated.
+
+const router = express.Router() // creates new router object
