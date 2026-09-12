@@ -34,3 +34,9 @@ browser side  :
 > npm i express-session
 
 
+********************************************
+
+# Connect-flash
+
+The flash is a  special area of the session used for storing messages. Messages are
+written to the flash and cleared after being displayed to the user.
