@@ -11,6 +11,7 @@ const mongoose =  require("mongoose")
 const ejsMate = require("ejs-mate")
 
 const session = require("express-session")
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash")
 const cookieParser = require("cookie-parser")
 
@@ -45,18 +46,31 @@ async function main() {
     await mongoose.connect(mongodb_url)
 }
 
+// mongo store
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto  :{
+        secret : `${mysupersecretkey}`,
+    },
+    touchAfter : 24 * 3600,
+});
 
-// session 
+store.on("error",(err)=>{
+    console.log("Error in MONGO SESSION STORE", err);
+});
+
+// session
 const sessionOptions = {
-    secret : "mysupersecretkey",
-    resave:false,
-    saveUninitialized : true,
-    cookie : {
-        expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge : 1000 * 60 * 60 * 24 * 7,
-        httpOnly : true
+    store,
+    secret : `${mysupersecretkey}`,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+         expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
+         maxAge : 7 * 24 * 60 * 60 * 1000,
+         httpOnly : true
     }
-};
+}
 
 app.use(session(sessionOptions));
 app.use(cookieParser())
