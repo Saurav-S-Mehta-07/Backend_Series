@@ -1,5 +1,66 @@
-<% layout("/layouts/boilerplate")%>
-<body>
+ <% layout("/layouts/boilerplate.ejs")  %>
+
+    <!-- filters -->
+    <div id="filters" class="mt-3">
+         <a href="/listings/?category=trending" class="filter">
+           <i class="fa-solid fa-fire"></i>
+           <p>Trending</p>
+         </a>
+
+         <a href="/listings/?category=rooms" class="filter">
+           <i class="fa-solid fa-bed"></i>
+           <p>Rooms</p>
+         </a>
+
+          <a href="/listings/?category=iconic cities" class="filter">
+           <i class="fa-solid fa-mountain-city"></i>
+           <p>Iconic Cities</p>
+          </a>
+
+         <a href="/listings/?category=mountains" class="filter">
+           <i class="fa-solid fa-mountain"></i>
+           <p>Mountains</p>
+         </a>
+
+         <a href="/listings/?category=castles" class="filter">
+           <i class="fa-brands fa-fort-awesome"></i>
+           <p>Castles</p>
+         </a>
+
+          <a href="/listings/?category=amazing pools" class="filter">
+           <i class="fa-solid fa-person-swimming"></i>
+           <p>Amazing Pools</p>
+          </a>
+
+         <a href="/listings/?category=forests" class="filter">
+           <i class="fa-solid fa-tree"></i>
+           <p>Forests</p>
+         </a>
+
+         <a href="/listings/?category=farms" class="filter">
+           <i class="fa-solid fa-cow"></i>
+           <p>Farms</p>
+         </a>
+
+          <a href="/listings/?category=camping" class="filter">
+           <i class="fa-solid fa-campground"></i>
+           <p>Camping</p>
+          </a>
+
+          <a href="/listings/?category=arctic" class="filter">
+             <i class="fa-solid fa-snowman"></i>
+             <p>Arctic</p>
+          </a>
+
+          <div class="tags-toggle ms-md-auto">
+            <div class="form-check-reverse form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+              <label class="form-check-label" for="switchCheckDefault">Display Total after Taxes</label>
+            </div>
+          </div>
+    </div><hr>
+
+    <!-- listings -->
     <div class="cards row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-2">
       <% for(let listing of allListings) { %>
         <a href="/listings/<%=listing._id%>" class="listing-link">
@@ -20,4 +81,4 @@
         </a>
       <% } %>
     </div>
-</body>
+
