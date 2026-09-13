@@ -76,15 +76,6 @@ app.get("/",(req,res)=>{
     res.redirect("/listings")
 })
 
-app.get("/demouser",async(req,res)=>{
-    let fakeUser = new User({
-        email : "demo@gmail.com",
-        username : "demo"
-    });
-
-    let registeredUser = await User.register(fakeUser, "mypassword");
-    res.send(registeredUser);
-})
 
 // routes
 app.use("/listings",listingRouter);
