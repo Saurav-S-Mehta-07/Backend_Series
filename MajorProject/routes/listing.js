@@ -5,7 +5,7 @@ const {listingSchema} = require("../schema.js");
 const wrapAsync = require("../utils/wrapAsync.js")
 const ExpressError = require("../utils/ExpressError.js");
 
-const {isLoggedIn, validateListing} = require("../middleware.js");
+const {isLoggedIn, validateListing, isOwner} = require("../middleware.js");
 
 // Index Route
 router.get("/",wrapAsync(async(req,res)=>{
@@ -42,7 +42,7 @@ router.get("/:id",wrapAsync( async(req,res)=>{
 
 
 //edit route
-router.get("/:id/edit",isLoggedIn,wrapAsync(async(req,res)=>{
+router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(async(req,res)=>{
     let {id} = req.params
     let listing = await Listing.findById(id)
     if(!listing){
@@ -53,19 +53,15 @@ router.get("/:id/edit",isLoggedIn,wrapAsync(async(req,res)=>{
 }))
 
 // update route
-router.put("/:id",isLoggedIn,validateListing,wrapAsync(async(req,res)=>{
+router.put("/:id",isLoggedIn,isOwner,validateListing,wrapAsync(async(req,res)=>{
     let {id} = req.params
-    let listing = req.body.listing
-    if(!listing){
-        throw new ExpressError(400, "Send valid data for listing")
-    }
-    await Listing.findByIdAndUpdate(id, listing, {runValidators : true})
+    await Listing.findByIdAndUpdate(id, req.body.listing, {runValidators : true})
     req.flash("success", "listing updated!");
     res.redirect(`/listings/${id}`);
 }))
 
 // destroy route
-router.delete("/:id",isLoggedIn,wrapAsync(async(req,res)=>{
+router.delete("/:id",isLoggedIn,isOwner,wrapAsync(async(req,res)=>{
     let {id} = req.params
     await Listing.findByIdAndDelete(id);
     req.flash("success", "listing deleted successfully!");
