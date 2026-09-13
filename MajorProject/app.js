@@ -26,10 +26,15 @@ const ExpressError = require("./utils/ExpressError.js")
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
+const userRouter =  require("./routes/user.js");
+
 const passport = require("passport")
 
 // connection to DB
 const mongodb_url = 'mongodb://127.0.0.1:27017/explora'
+main()
+.then(()=>console.log("Connected to MongoDB Successfully!"))
+.catch((err)=>console.log("Error : ", err))
 async function main() {
     await mongoose.connect(mongodb_url)
 }
@@ -71,9 +76,20 @@ app.get("/",(req,res)=>{
     res.redirect("/listings")
 })
 
+app.get("/demouser",async(req,res)=>{
+    let fakeUser = new User({
+        email : "demo@gmail.com",
+        username : "demo"
+    });
+
+    let registeredUser = await User.register(fakeUser, "mypassword");
+    res.send(registeredUser);
+})
+
 // routes
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter)
+app.use("/", userRouter)
 
 app.use((req,res,next)=>{
     next(new ExpressError(404, "Page not Found"))
@@ -86,7 +102,4 @@ app.use((err,req,res,next)=>{
 
 app.listen(PORT,()=>{
     console.log(`Listening to PORT ${PORT}`)
-
-    main().then(()=>console.log("Connected to MongoDB Successfully!"))
-    .catch((err)=>console.log("Error : ", err))
 })
