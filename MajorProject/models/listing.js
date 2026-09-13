@@ -1,55 +1,50 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const Review = require("./review.js")
 
-const Schema = mongoose.Schema
-
-const Review = require("./review.js");
-
-const listingSchema = Schema({
-    title:{
-      type : String,
-      required:true,
-    },
-    description:{
+const listingSchema = new Schema({
+    title :{
         type : String,
-        required : true,
+        required : true
     },
+    description : String,
     image : {
-       type:String,
-       default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX4K-D7rFeL1Fta30QgEQQ5Aik7WFhDmZbcXjPr0M6Ng&s=10",
-       set : (v) => v === "" ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX4K-D7rFeL1Fta30QgEQQ5Aik7WFhDmZbcXjPr0M6Ng&s=10":v,
+        url : {
+            type: String,
+        },
+        filename : String,
     },
-    price:{
-        type:Number,
-        required : true,
-        min : [0, "price can't be too low"]
+    price :{
+        type : Number,
+        min : 0
     },
-    location:{
-        type:String,
-        required:true
-    },
-    country : {
-        type: String,
-        required:true
-    },
-
+    location : String,
+    country : String,
     reviews : [
         {
             type : Schema.Types.ObjectId,
-            ref : "Review"
-        }
+            ref : "Review",
+        },
     ],
-
     owner : {
         type : Schema.Types.ObjectId,
-        ref : "User",
+        ref: "User",
+    },
+    category :{
+        type : String,
+        default :"trending",
+        enum :["trending","forests","rooms","iconic cities", "mountains",
+             "castles", "amazing pools", "forests", "farms", "camping","arctic"
+            ],
     }
-})
+});
 
-listingSchema.post("findOneAndDelete",async(listing)=>{
-   if(listing){
-     await Review.deleteMany({_id : {$in : listing.reviews}})
-   }
-})
+listingSchema.post("findOneAndDelete", async(listing)=>{
+    if(listing){
+      await Review.deleteMany({_id : {$in : listing.reviews}});
+    }
+});
 
-const Listing = mongoose.model("Listing", listingSchema)
-module.exports = Listing
+const Listing = mongoose.model("Listing", listingSchema);
+
+module.exports = Listing;

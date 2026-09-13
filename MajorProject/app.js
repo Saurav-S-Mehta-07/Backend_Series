@@ -13,8 +13,6 @@ const ejsMate = require("ejs-mate")
 const session = require("express-session")
 const flash = require("connect-flash")
 const cookieParser = require("cookie-parser")
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
 
 const possport = require("passport");
 const LocalStretegy = require("passport-local");

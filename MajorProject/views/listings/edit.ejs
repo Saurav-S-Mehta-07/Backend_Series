@@ -4,8 +4,8 @@
       <h3 class="mt-3">Edit your Listing</h3>
       <form method="POST" 
             action="/listings/<%= listing._id %>?_method=PUT"
-            class="needs-validation"
             novalidate
+            class="needs-validation"
             enctype="multipart/form-data"
       >
          <div class="mb-2">
@@ -33,7 +33,7 @@
 
          <div class="mb-2">
             <p class="card-text">Original Listing Image</p>
-            <img src="<%= listing.image %>" alt="lisitingImage" class="show-img">
+            <img src="<%=ImageUrl%>" alt="lisitingImage" class="show-img">
          </div>
   
          <div  class="mb-2">
@@ -91,7 +91,20 @@
                </div>
             </div>
          </div>
-        <button  class="mb-2 edit-btn">Update</button>
+
+         <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="listing[category]" id="category" class="form-select" required>
+            <% const categories = ["trending", "rooms", "iconic cities", "mountains", "castles", "amazing pools", "camping", "farms", "forests","arctic"]; %>
+            <% categories.forEach(cat => { %>
+              <option value="<%= cat %>" <%= listing.category === cat ? "selected" : "" %>><%= cat %></option>
+            <% }) %>
+          </select>
+          <div class="invalid-feedback">Please select a category</div>
+        </div>
+  
+         
+        <button  class="mb-2 edit-btn">Edit</button>
       </form>
   </div>
 </div>
