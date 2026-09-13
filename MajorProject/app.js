@@ -35,7 +35,9 @@ const userRouter =  require("./routes/user.js");
 const passport = require("passport")
 
 // connection to DB
-const mongodb_url = 'mongodb://127.0.0.1:27017/explora'
+// const mongodb_url = 'mongodb://127.0.0.1:27017/explora'
+const mongodb_url = process.env.MONGODB_URI;
+
 main()
 .then(()=>console.log("Connected to MongoDB Successfully!"))
 .catch((err)=>console.log("Error : ", err))
