@@ -6,17 +6,20 @@ const { signup, loginForm, signupForm, login, logout } = require("../controllers
 const passport = require("passport")
 
 
-router.get("/signup", signupForm);
-router.post("/signup",wrapAsync(signup));
-router.get("/login", loginForm);
-router.post("/login",
-    saveRedirectUrl, 
+router.route("/signup")
+.get(signupForm)
+.post(wrapAsync(signup));
+
+router.route("/login")
+.get(loginForm)
+.post(saveRedirectUrl, 
     passport.authenticate("local", {
       failureRedirect: "/login",
       failureFlash: true,
     }),
     login
 );
+
 router.get("/logout", logout);
 
 module.exports = router;
